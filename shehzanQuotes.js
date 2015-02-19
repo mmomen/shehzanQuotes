@@ -4,12 +4,10 @@ if (Meteor.isClient) {
 
   Template.quotes.helpers({
     quote: function() {
-      // var num = Quotes.count();
+      // var num = Quotes.count(); //errors out
       var randomNum = Math.floor(Math.random()*2+1);
       var quoteObj = Quotes.findOne({quote_id: randomNum});
-      console.log(quoteObj);
       var randomQuote = quoteObj.quote;
-      console.log(quoteObj.quote);
       return randomQuote;
     }
   });
