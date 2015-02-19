@@ -1,23 +1,35 @@
-if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault('counter', 0);
+Quotes = new Mongo.Collection("quotes");
 
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get('counter');
+if (Meteor.isClient) {
+
+  Template.quotes.helpers({
+    quote: function() {
+      // var num = Quotes.count();
+      var randomNum = Math.floor(Math.random()*2+1);
+      var quoteObj = Quotes.findOne({quote_id: randomNum});
+      console.log(quoteObj);
+      var randomQuote = quoteObj.quote;
+      console.log(quoteObj.quote);
+      return randomQuote;
     }
   });
 
-  Template.hello.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
+  Template.quotes.events({
+    "click button": function() {
+      console.log('new quote');
+      // Session.set('quote', newQuote);
     }
   });
 }
 
 if (Meteor.isServer) {
+
+  Meteor.methods({
+  });
+
   Meteor.startup(function () {
-    // code to run on server at startup
+    Quotes.remove({});
+    Quotes.insert({quote_id: 1, quote: "What is that?"});
+    Quotes.insert({quote_id: 2, quote: "I like bunions!"});
   });
 }
