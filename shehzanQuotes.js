@@ -8,14 +8,18 @@ if (Meteor.isClient) {
       var randomNum = Math.floor(Math.random()*6+1);
       var quoteObj = Quotes.findOne({quote_id: randomNum});
       var randomQuote = quoteObj.quote;
-      return randomQuote;
+      Session.set('quote', randomQuote);
+      return Session.get('quote');
     }
   });
 
   Template.quotes.events({
     "click button": function() {
       console.log('new quote');
-      // Session.set('quote', newQuote);
+      var randomNum = Math.floor(Math.random()*6+1);
+      var quoteObj = Quotes.findOne({quote_id: randomNum});
+      var newQuote = quoteObj.quote;
+      Session.set('quote', newQuote);
     }
   });
 }
