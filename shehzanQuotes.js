@@ -1,7 +1,7 @@
 Quotes = new Mongo.Collection("quotes");
 
 var getQuote = function() {
-  var randomNum = Math.floor(Math.random()*10+1);
+  var randomNum = Math.floor(Math.random()*11+1);
   var quoteObj = Quotes.findOne({quote_id: randomNum});
   var quote = quoteObj.quote;
   console.log(quote);
@@ -61,6 +61,7 @@ if (Meteor.isServer) {
     Quotes.insert({quote_id: 8, quote: "I'm really good at ping pong because I pretend the paddle is a lightsaber."});
     Quotes.insert({quote_id: 9, quote: "Before MakerSquare, I was teaching programming to fish."});
     Quotes.insert({quote_id: 10, quote: "If man was monkey, what was before monkey?"});
+    Quotes.insert({quote_id: 11, quote: "Where's the CRUD?"});
   });
 
 }
