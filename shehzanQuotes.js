@@ -10,8 +10,11 @@ var getQuote = function() {
 
 if (Meteor.isClient) {
 
-  var qq = getQuote();
-  Session.set('quote', qq);
+  setTimeout(function() {
+    var qq = getQuote();
+    Session.set('quote', qq);
+  }, 2000);
+
 
   Template.quotes.helpers({
     quote: function() {
