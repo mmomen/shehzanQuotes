@@ -4,7 +4,6 @@ if (Meteor.isClient) {
 
   Template.quotes.helpers({
     quote: function() {
-      // var num = Quotes.count(); //errors out
       var randomNum = Math.floor(Math.random()*10+1);
       var quoteObj = Quotes.findOne({quote_id: randomNum});
       var randomQuote = quoteObj.quote;
@@ -14,20 +13,33 @@ if (Meteor.isClient) {
   });
 
   Template.quotes.events({
-    "click button": function() {
-      console.log('new quote');
-      var randomNum = Math.floor(Math.random()*6+1);
+    "click .btn": function() {
+      var randomNum = Math.floor(Math.random()*10+1);
       var quoteObj = Quotes.findOne({quote_id: randomNum});
       var newQuote = quoteObj.quote;
       Session.set('quote', newQuote);
     }
   });
+
+  Template.quotes.rendered = function(){
+    setTimeout(function(){
+      $('.main-pic').css('visibility', 'visible');
+    }, 3000);
+
+    setTimeout(function(){
+      $('.main-pic').animate({
+        opacity: 0.1
+      }, 1500);
+    }, 4500);
+
+    setTimeout(function(){
+      $('.something').css('visibility', 'visible');
+    }, 6000);
+  };
+
 }
 
 if (Meteor.isServer) {
-
-  Meteor.methods({
-  });
 
   Meteor.startup(function () {
     Quotes.remove({});
@@ -42,4 +54,5 @@ if (Meteor.isServer) {
     Quotes.insert({quote_id: 9, quote: "Before MakerSquare, I was teaching programming to fish."});
     Quotes.insert({quote_id: 10, quote: "If man was monkey, what was before monkey?"});
   });
+
 }

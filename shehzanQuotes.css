@@ -1,1 +1,28 @@
 /* CSS declarations go here */
+body {
+  text-align: center;
+}
+
+.main-pic {
+  visibility: hidden;
+  height: 100vh;
+  width: 100%;
+}
+
+.something {
+  visibility: hidden;
+  position: absolute;
+  top: 25%;
+  width: 100%;
+}
+
+.quote {
+  font-size: 5em;
+  line-height: 100%;
+  height: 100vh;
+  color: green;
+}
+
+.q {
+  height: 3.5em;
+}
