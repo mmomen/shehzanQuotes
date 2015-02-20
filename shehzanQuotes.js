@@ -11,8 +11,7 @@ var getQuote = function() {
 if (Meteor.isClient) {
 
   setTimeout(function() {
-    var qq = getQuote();
-    Session.set('quote', qq);
+    Session.set('quote', "Lucere was a well managed project.");
   }, 2000);
 
 
