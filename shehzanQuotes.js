@@ -1,23 +1,28 @@
 Quotes = new Mongo.Collection("quotes");
 
+var getQuote = function() {
+  var randomNum = Math.floor(Math.random()*10+1);
+  var quoteObj = Quotes.findOne({quote_id: randomNum});
+  var quote = quoteObj.quote;
+  console.log(quote);
+  return quote;
+};
+
 if (Meteor.isClient) {
+
+  var qq = getQuote();
+  Session.set('quote', qq);
 
   Template.quotes.helpers({
     quote: function() {
-      var randomNum = Math.floor(Math.random()*10+1);
-      var quoteObj = Quotes.findOne({quote_id: randomNum});
-      var randomQuote = quoteObj.quote;
-      Session.set('quote', randomQuote);
       return Session.get('quote');
     }
   });
 
   Template.quotes.events({
     "click .btn": function() {
-      var randomNum = Math.floor(Math.random()*10+1);
-      var quoteObj = Quotes.findOne({quote_id: randomNum});
-      var newQuote = quoteObj.quote;
-      Session.set('quote', newQuote);
+      var qq = getQuote();
+      Session.set('quote', qq);
     }
   });
 
